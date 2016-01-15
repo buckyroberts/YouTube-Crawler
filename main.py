@@ -1,9 +1,9 @@
 import requests
 from bs4 import BeautifulSoup
 
-CATEGORY = 44
-PLAYLIST_URL = 'https://www.youtube.com/watch?v=ueVnSz_lXEs&index=1&list=PL6gx4Cwl9DGBpuvPW0aHa7mKdn_k9SPKO'
-TITLE_START = 35
+CATEGORY = 373
+PLAYLIST_URL = 'https://www.youtube.com/watch?v=qIULMnbH2-o&index=1&list=PL6gx4Cwl9DGBPw1sFodruZUPheWVKchlM'
+TITLE_START = 39
 video_codes = []
 video_titles = []
 
