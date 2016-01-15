@@ -17,6 +17,7 @@ def crawl(url):
             video_codes.append(results[9:20])
         for title in playlist.findAll('h4'):
             title = title.string.strip()
+            title = title.replace("'", "")
             title = title[TITLE_START:].strip()
             video_titles.append(title)
 
