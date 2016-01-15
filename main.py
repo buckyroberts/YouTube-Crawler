@@ -1,7 +1,9 @@
 import requests
 from bs4 import BeautifulSoup
 
-PLAYLIST_URL = 'https://www.youtube.com/watch?v=HjuHHI60s44&index=1&list=PL6gx4Cwl9DGCkg2uj3PxUWhMDuTw3VKjM'
+CATEGORY = 44
+PLAYLIST_URL = 'https://www.youtube.com/watch?v=ueVnSz_lXEs&index=1&list=PL6gx4Cwl9DGBpuvPW0aHa7mKdn_k9SPKO'
+TITLE_START = 35
 video_codes = []
 video_titles = []
 
@@ -14,13 +16,19 @@ def crawl(url):
             results = link.get('href')
             video_codes.append(results[9:20])
         for title in playlist.findAll('h4'):
-            video_titles.append(title.string.strip())
+            title = title.string.strip()
+            title = title[TITLE_START:].strip()
+            video_titles.append(title)
 
 
-def test():
+def output():
+    query = "INSERT INTO `buckysroom`.`videos` (`videoID`, `categoryID`, `title`, `code`) VALUES "
     for x, y in enumerate(video_codes):
-        print(video_codes[x] + '\t\t' + video_titles[x])
+        query += "\n(NULL, '" + str(CATEGORY) + "', '" + video_titles[x] + "', '" + video_codes[x] + "'),"
+    query = query[:-1]
+    query += ';'
+    print(query)
 
 
 crawl(PLAYLIST_URL)
-test()
+output()
